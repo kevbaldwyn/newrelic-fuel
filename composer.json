@@ -1,0 +1,20 @@
+{
+    "name": "kevbaldwyn/newrelic-fuel",
+    "description": "A simple new relic framework integration for FuelPHP",
+    "authors": [
+        {
+            "name": "Kevin Baldwyn",
+            "email": "kevin@purepixel.co.uk"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.3",
+    },
+
+    "autoload": {
+        "psr-0": {
+            "KevBaldwyn\\NewRelic":"src"
+        }
+    }
+}
