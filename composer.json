@@ -16,5 +16,8 @@
         "psr-0": {
             "KevBaldwyn\\NewRelic":"src"
         }
+        "classmap": [
+            "src/"
+        ]
     }
 }
