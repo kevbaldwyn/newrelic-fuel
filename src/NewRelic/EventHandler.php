@@ -7,8 +7,7 @@ class EventHandler {
     public static function handle()
     {
         $request = Request::active();
-        pa($request, true);
-        //newrelic_name_transaction($request->controller . '/' . $request->action);
+        newrelic_name_transaction($request->route->translation);
     }
 
 } 
