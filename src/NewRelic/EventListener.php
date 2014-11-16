@@ -8,7 +8,9 @@ class EventListener {
 
     public static function register()
     {
-        Event::register(self::EVENT_LISTEN, 'KevBaldwyn\NewRelic\EventHandler::handle');
+        if (extension_loaded('newrelic')) {
+            Event::register(self::EVENT_LISTEN, 'KevBaldwyn\NewRelic\EventHandler::handle');
+        }
     }
 
 } 
