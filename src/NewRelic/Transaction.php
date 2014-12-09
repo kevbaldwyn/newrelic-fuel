@@ -3,7 +3,9 @@ class Transaction {
 
     public static function add($route)
     {
-        newrelic_name_transaction($route);
+        if (extension_loaded('newrelic')) {
+            newrelic_name_transaction($route);
+        }
     }
 
 } 
