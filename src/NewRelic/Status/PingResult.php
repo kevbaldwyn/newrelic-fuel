@@ -10,8 +10,8 @@ class PingResult {
 
     public function __construct(Array $array)
     {
-        foreach($array as $item) {
-            $obj = new Item($item);
+        foreach($array as $url => $item) {
+            $obj = new Item($url, $item);
             $this->results[] = $obj;
         }
     }
