@@ -12,8 +12,18 @@ class PingResult {
     {
         foreach($array as $item) {
             $obj = new Item($item);
-            $this->results[] = $item;
+            $this->results[] = $obj;
         }
+    }
+
+    public function getResult()
+    {
+        foreach($this->all() as $item) {
+            if($item->getResult() == self::STATUS_PROBLEM) {
+                return self::STATUS_PROBLEM;
+            }
+        }
+        return self::STATUS_OK;
     }
 
     public function all()

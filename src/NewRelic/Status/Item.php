@@ -1,4 +1,4 @@
-<?php  namespace KevBaldwynNewRelic\Status; 
+<?php  namespace KevBaldwyn\NewRelic\Status;
 
 class Item {
 
