@@ -2,10 +2,12 @@
 
 class Item {
 
+    protected $url;
     protected $data;
 
-    public function __construct(Array $data)
+    public function __construct($url, Array $data)
     {
+        $this->url = $url;
         $this->data = $data;
     }
 
@@ -17,6 +19,11 @@ class Item {
     public function getResult()
     {
         return $this->data['result'];
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
     }
 
 }
