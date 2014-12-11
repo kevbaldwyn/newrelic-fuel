@@ -17,17 +17,16 @@ class EventHandler {
     public static function routes()
     {
         $route = '_status';
-        Router::add($route, new Route($route, function() {
+        Router::add($route, new Route($route, function($request) {
             // ping the urls
             $pinger = new Pinger($urls);
             $res = $pinger->ping();
 
-            // add path to request
-            $request = Request::active();
-            $request->add_path(realpath(rtrim(__DIR__, '/')) . '/../views/');
+            // add path to lookup view
+            Finder::instance()->add_path(realpath(rtrim(__DIR__, '/') . '/../'));
 
             // build a view and return it
-            return View::forge('status', ['result' => $res]);
+            return View::forge('_newrelic-status', ['result' => $res]);
         }));
     }
 
