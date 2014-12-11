@@ -3,6 +3,7 @@
 use KevBaldwyn\NewRelic\Status\PingResult;
 use Guzzle\Http\ClientInterface;
 use Guzzle\Http\Client;
+use Guzzle\Http\Exception\ServerErrorResponseException;
 
 class Pinger {
 
@@ -32,7 +33,11 @@ class Pinger {
         $return = [];
         foreach($this->urls as $url => $regEx) {
             $req = $this->httpClient->get($this->baseHost . $url);
-            $req->send();
+            try {
+                $req->send();
+            }catch (ServerErrorResponseException $e) {
+                // pass through this exception as we catch the status code later
+            }
             $result = (!in_array($req->getResponse()->getStatusCode(), $this->okStatusCodes)) ?
                 PingResult::STATUS_PROBLEM :
                 $this->matchRegEx($req->getResponse()->getBody(), $regEx);
