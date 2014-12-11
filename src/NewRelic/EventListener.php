@@ -13,7 +13,7 @@ class EventListener {
             Event::register(self::EVENT_LISTEN, 'KevBaldwyn\NewRelic\EventHandler::transaction');
         }
 
-        Event::register(self::EVENT_APP_BOOT, 'KevBaldwyn\NewRelic\EventHandler::routes');
+        EventHandler::routes();
     }
 
 } 

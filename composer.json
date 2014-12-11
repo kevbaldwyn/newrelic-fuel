@@ -20,10 +20,10 @@
 
     "autoload": {
         "psr-0": {
-            "KevBaldwyn\\NewRelic":"src"
+            "KevBaldwyn\\NewRelic":"src/NewRelic/"
         },
         "classmap": [
-            "src/"
+            "src/NewRelic"
         ]
     }
 }
