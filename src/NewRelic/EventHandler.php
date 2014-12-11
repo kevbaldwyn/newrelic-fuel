@@ -4,6 +4,8 @@ use Fuel\Core\Request;
 use Fuel\Core\Router;
 use Fuel\Core\Route;
 use Fuel\Core\View;
+use Fuel\Core\Config;
+use Fuel\Core\Finder;
 use KevBaldwyn\NewRelic\Status\Pinger;
 
 class EventHandler {
@@ -18,8 +20,11 @@ class EventHandler {
     {
         $route = '_status';
         Router::add($route, new Route($route, function($request) {
+            // load a config
+            $conf = Config::load('newrelic-ping');
+
             // ping the urls
-            $pinger = new Pinger($urls);
+            $pinger = new Pinger($conf['urls'], $conf['base_host']);
             $res = $pinger->ping();
 
             // add path to lookup view
