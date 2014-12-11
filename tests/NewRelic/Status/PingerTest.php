@@ -68,6 +68,7 @@ class PingerTest extends PHPUnit_Framework_TestCase {
         $response->shouldReceive('getStatusCode')->andReturn($status);
         $response->shouldReceive('getBody')->andReturn($body);
         $request = m::mock('Guzzle\Http\Message\RequestInterface');
+        $request->shouldReceive('send');
         $request->shouldReceive('getResponse')->andReturn($response);
 
         return $request;

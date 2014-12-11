@@ -17,6 +17,7 @@ class Pinger {
             $httpClient = new Client();
         }
         $this->urls = $urls;
+        $this->baseHost = $baseHost;
         $this->httpClient = $httpClient;
     }
 
@@ -30,12 +31,13 @@ class Pinger {
     {
         $return = [];
         foreach($this->urls as $url => $regEx) {
-            $res = $this->httpClient->get($this->baseHost . $url);
-            $result = (!in_array($res->getResponse()->getStatusCode(), $this->okStatusCodes)) ?
-                            PingResult::STATUS_PROBLEM :
-                            $this->matchRegEx($res->getResponse()->getBody(), $regEx);
+            $req = $this->httpClient->get($this->baseHost . $url);
+            $req->send();
+            $result = (!in_array($req->getResponse()->getStatusCode(), $this->okStatusCodes)) ?
+                PingResult::STATUS_PROBLEM :
+                $this->matchRegEx($req->getResponse()->getBody(), $regEx);
             $return[$url] = [
-                'status' => $res->getResponse()->getStatusCode(),
+                'status' => $req->getResponse()->getStatusCode(),
                 'result' => $result
             ];
         }
