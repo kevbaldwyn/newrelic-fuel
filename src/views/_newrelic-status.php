@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Status <?php echo $result->getResult(); ?></title>
     <meta charset="utf-8">
-    <title>Current Status [<?php echo $result->getResult(); ?>]</title>
 
     <style>
         body {
