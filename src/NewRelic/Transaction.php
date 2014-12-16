@@ -8,4 +8,10 @@ class Transaction {
         }
     }
 
+    public static function addParam($key, $value)
+    {
+        if(extension_loaded('newrelic')) {
+            newrelic_add_custom_parameter($key, $value);
+        }
+    }
 } 
