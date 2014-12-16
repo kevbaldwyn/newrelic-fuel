@@ -6,6 +6,7 @@ use Fuel\Core\Route;
 use Fuel\Core\View;
 use Fuel\Core\Config;
 use Fuel\Core\Finder;
+use Fuel\Core\Response;
 use KevBaldwyn\NewRelic\Status\Pinger;
 
 class EventHandler {
@@ -30,8 +31,8 @@ class EventHandler {
             // add path to lookup view
             Finder::instance()->add_path(realpath(rtrim(__DIR__, '/') . '/../'));
 
-            // build a view and return it
-            return View::forge('_newrelic-status', ['result' => $res]);
+            // build a response and return it
+            return new Response(View::forge('_newrelic-status', ['result' => $res]), $res->getResultStatusCode());
         }));
     }
 

@@ -26,6 +26,16 @@ class PingResult {
         return self::STATUS_OK;
     }
 
+    public function getResultStatusCode()
+    {
+        foreach($this->all() as $item) {
+            if($item->getResult() == self::STATUS_PROBLEM) {
+                return 500;
+            }
+        }
+        return 200;
+    }
+
     public function all()
     {
         return $this->results;
