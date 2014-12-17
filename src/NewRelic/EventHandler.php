@@ -21,6 +21,9 @@ class EventHandler {
     {
         $route = '_status';
         Router::add($route, new Route($route, function($request) {
+            // ignore this transaction
+            Transaction::ignore();
+
             // load a config
             $conf = Config::load('newrelic-ping');
 
